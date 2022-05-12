@@ -1,0 +1,68 @@
+.stopwatch {
+    margin: 0 auto;
+    width: 98%;
+    &__title {
+        font-weight: bold;
+        margin: 10px 0;
+        font-size: 25px;
+    }
+    &__table {
+        font-size: 20px;
+        width: 100%;
+        border-collapse: collapse;
+
+        th {
+            border-bottom: 1px solid rgb(118, 118, 118);
+            background-color: #e0e0ff;
+            text-align: left;
+            padding: 7px;
+            padding-left: 15px;
+            position: relative;
+            &::before {
+                position: absolute;
+                right: 0;
+                width: 1px;
+                height: 70%;
+                background-color: rgb(118, 118, 118);
+                content: "";
+            }
+            &:last-child {
+                &::before {
+                    width: 0;
+                }
+            }
+        }
+
+        td {
+            background-color: #f0f0ff;
+            padding: 7px;
+            padding-left: 15px;
+            .action__item {
+                border-radius: 5px;
+                padding: 2px;
+                cursor: pointer;
+                &:hover {
+                    background-color: #dfdfff;
+
+                }
+            }
+        }
+    }
+    .table {
+        &__title {
+            width: 30%;
+        }
+        &__timer {
+            width: 10%;
+        }
+        &__description {
+            width: 60%;
+        }
+        &__action {
+            padding-left: 7px;
+        }
+        &__head-action {
+            width: 16px;
+        }
+    }
+}

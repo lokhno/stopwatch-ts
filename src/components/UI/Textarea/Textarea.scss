@@ -1,0 +1,14 @@
+.textarea {
+    display: flex;
+    flex-direction: column;
+    label {
+        font-size: 14px;
+        margin-bottom: 3px;
+    }
+    textarea {
+        font-size: 20px;
+        padding: 5px;
+        height: 70px;
+    }
+    margin-bottom: 10px;
+}

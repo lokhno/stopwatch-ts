@@ -1,0 +1,25 @@
+.navigation__nav-buttom {
+    width: 65px;
+    height: 60px;
+    font-size: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    margin: 0;
+    border-left: 3px solid rgb(197, 197, 255);
+    
+    svg {
+        width: 20px;
+        height: 20px;
+        margin-bottom: 5px;
+    }
+    &:hover {
+        border-left: 3px solid blue;
+        background-color: rgb(184, 184, 255);
+        border-radius: 5px;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+}

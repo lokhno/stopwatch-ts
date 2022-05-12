@@ -1,0 +1,10 @@
+.navigation {
+    height: calc(100vh - 10px);
+    width: 68px;
+    background-color: rgb(197, 197, 255);
+    padding-top: 10px;
+    a {
+        color: black;
+        text-decoration: none;
+    }
+}
