@@ -4,7 +4,7 @@ import { EditOutlined, DeleteOutlined, PlayCircleOutlined, PauseCircleOutlined }
 import * as workerTimers from "worker-timers";
 import { setWorkerInterval, clearWorkerTimer } from "set-worker-timer";
 
-import { getStopwatchTime, isStopwatchTicking, getTimeFromMilliseconds } from "../../../helper/stopwatch";
+import { getStopwatchTime, isStopwatchTicking, getTimeFromMilliseconds, getStopwatchLastIntervalStartTime } from "../../../helper/stopwatch";
 import { useActions } from "../../../hooks/useAction";
 
 import { IStopwatch } from "../../../types/stopwatch";
@@ -20,13 +20,9 @@ export const StopwatchItem: React.FC<StopwatchItemProps> = ({ item, onEditButton
     const { addTimeInterval, changeTimeInterval } = useActions();
     const isTicking = isStopwatchTicking(item.timeIntervals);
 
-    const [currentTimer, setCurrentTimer] = useState(getStopwatchTime(item.timeIntervals));
-    const [start, setStart] = useState<Date | undefined>();
-
     let currentTimerView = getStopwatchTime(item.timeIntervals);
 
     useEffect(() => {
-        // let timerId = workerTimers.setInterval(() => {
         let timerId = setWorkerInterval(() => {
             if (isTicking) {
                 currentTimerView += 1000;
@@ -37,17 +33,15 @@ export const StopwatchItem: React.FC<StopwatchItemProps> = ({ item, onEditButton
         }, 1000);
         return () => {
             clearWorkerTimer(timerId);
-            // workerTimers.clearInterval(timerId);
         };
-    }, [start]);
+    }, [isTicking]);
 
     const onToggleTicking = () => {
         if (!isTicking) {
-            setStart(new Date());
-            addTimeInterval(item._id, { startDate: start || new Date(), stopDate: undefined });
+            addTimeInterval(item._id, { startDate: new Date(), stopDate: undefined });
         } else {
-            changeTimeInterval(item._id, { startDate: start || new Date(), stopDate: new Date() });
-            setStart(undefined);
+            changeTimeInterval(item._id, { startDate: getStopwatchLastIntervalStartTime(item.timeIntervals), stopDate: new Date() });
+            
         }
     };
 

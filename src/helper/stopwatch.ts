@@ -1,17 +1,26 @@
+import internal from "stream";
 import { ITimeInterval } from "../types/stopwatch";
 
 export const getStopwatchTime = (intervals: ITimeInterval[]): number => {
+
     let result: number = 0;
 
     intervals.forEach((item) => {
-        let end = item.stopDate ? item.stopDate.getTime() : new Date().getTime();
-        result += end - item.startDate.getTime();
+        let end = item.stopDate ? new Date(item.stopDate).getTime() : new Date().getTime();
+        result += end - new Date(item.startDate).getTime();
     });
     return result;
 };
 
+export const getStopwatchLastIntervalStartTime = (intervals: ITimeInterval[]): Date => {
+    if (intervals.length === 0) {
+        return new Date();
+    }
+    return intervals[intervals.length - 1].startDate;
+};
+
 export const isStopwatchTicking = (intervals: ITimeInterval[]): boolean => {
-    if(intervals.length === 0) {
+    if (intervals.length === 0) {
         return false;
     }
     return !intervals[intervals.length - 1].stopDate;
