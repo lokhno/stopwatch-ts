@@ -16,8 +16,8 @@ export const excludeItems = (items: IProject[], id: number): IProject[] => {
 };
 
 const setLocalStorage = (items: IProject[], id: number) => {
-    localStorage.stopwatchesNextID = id;
-    localStorage.stopwatchesItems = JSON.stringify(items);
+    localStorage.projectNextID = id;
+    localStorage.projectsItems = JSON.stringify(items);
 };
 
 export const projectReduser = (state = initialState, action: ProjectAction): IProjectState => {
