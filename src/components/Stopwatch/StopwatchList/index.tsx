@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import { useActions } from "../../../hooks/useAction";
 import { useTypeSelector } from "../../../hooks/useTypeSelector";
@@ -39,7 +40,9 @@ export const StopwatchList: React.FC<StopwatchListProps> = ({ projectId }) => {
     };
     return (
         <div className="stopwatch">
-            <div className="stopwatch__title">{project?.title}</div>
+            <div className="stopwatch__title">
+                <Link to={`/stopwatch/${projectId}`}>{project?.title}</Link>
+            </div>
             <table className="stopwatch__table table">
                 <thead>
                     <tr>
