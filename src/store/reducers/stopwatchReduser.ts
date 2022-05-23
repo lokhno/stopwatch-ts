@@ -7,14 +7,7 @@ import {
 } from "../../types/stopwatch";
 const initialState: IStopwatchesState = {
     stopwatches: (localStorage.stopwatchesItems && JSON.parse(localStorage.stopwatchesItems)) || [
-        {
-            title: "слушать подкасты на английском",
-            _id: 1,
-            projectId: 2,
-            timeIntervals: [],
-            description: "сейчас джо роган",
-        },
-        { title: "Учить грамматику", _id: 2, projectId: 2, timeIntervals: [], description: "каждый ден!" },
+        
     ],
     nextId: localStorage.stopwatchesNextID || 3,
 };
@@ -109,6 +102,15 @@ export const stopwatchReduser = (state = initialState, action: StopwatchAction):
                     excludeInterval(state.stopwatches, action.payload.id),
                     action.payload.id,
                     action.payload.interval
+                ),
+            };
+            setLocalStorage(tmpState.stopwatches, tmpState.nextId);
+            return tmpState;
+        case StopwatchActionTypes.REST_STOPWATCH:
+            tmpState = {
+                ...state,
+                stopwatches: state.stopwatches.map((item) =>
+                    item._id !== action.payload ? item : { ...item, timeIntervals: [] }
                 ),
             };
             setLocalStorage(tmpState.stopwatches, tmpState.nextId);

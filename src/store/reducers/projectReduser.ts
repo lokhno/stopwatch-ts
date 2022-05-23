@@ -2,9 +2,7 @@ import { IProjectState, ProjectAction, ProjectActionTypes, IProject } from "../.
 
 const initialState: IProjectState = {
     projects: (localStorage.projectsItems && JSON.parse(localStorage.projectsItems)) || [
-        { _id: 1, title: "stopwatches" },
-        { _id: 2, title: "learnenglish" },
-        { _id: 3, title: "timeline" },
+        
     ],
     nextId: localStorage.projectNextID || 4,
 };

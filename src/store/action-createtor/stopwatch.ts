@@ -23,3 +23,8 @@ export const changeTimeInterval = (id: number, interval: ITimeInterval): Stopwat
     type: StopwatchActionTypes.CHANGE_TIME_INTERVAL,
     payload: { interval, id },
 });
+
+export const resetStopwatch = (id: number): StopwatchAction => ({
+    type: StopwatchActionTypes.REST_STOPWATCH,
+    payload: id
+});

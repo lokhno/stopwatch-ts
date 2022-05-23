@@ -9,6 +9,7 @@ export enum StopwatchActionTypes {
     EDIT_STOPWATCH = "EDIT_STOPWATCH",
     CHANGE_TIME_INTERVAL = "CHANGE_TIME_INTERVAL",
     ADD_TIME_INTERVAL = "ADD_TIME_INTERVAL",
+    REST_STOPWATCH = "REST_STOPWATCH",
 }
 
 interface AddStopwatchAction {
@@ -27,13 +28,17 @@ interface AddTimeInterval {
     type: StopwatchActionTypes.ADD_TIME_INTERVAL;
     payload: { id: number; interval: ITimeInterval };
 }
+interface ResetStopwatch {
+    type: StopwatchActionTypes.REST_STOPWATCH;
+    payload: number
+}
 
 interface ChangeTimeIntervalAction {
     type: StopwatchActionTypes.CHANGE_TIME_INTERVAL;
     payload: { interval: ITimeInterval; id: number };
 }
 
-export type StopwatchAction = AddStopwatchAction | DeleteStopwatchAction | EditStopwatchAction | AddTimeInterval | ChangeTimeIntervalAction;
+export type StopwatchAction = AddStopwatchAction | DeleteStopwatchAction | EditStopwatchAction | AddTimeInterval | ChangeTimeIntervalAction | ResetStopwatch;
 
 export interface IStopwatch {
     title: string;

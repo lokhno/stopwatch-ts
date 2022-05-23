@@ -4,9 +4,12 @@ import { useLocation } from "react-router-dom";
 
 import { Form } from "..";
 import { Input } from "../../UI/Input";
+import { Button } from "../../UI/Button";
 import { Textarea } from "../../UI/Textarea";
 import { useActions } from "../../../hooks/useAction";
 import { useTypeSelector } from "../../../hooks/useTypeSelector";
+
+import "./StopwatchForm.scss";
 
 interface StopwatchFormProps {}
 
@@ -17,7 +20,7 @@ export const StopwatchForm: React.FC<StopwatchFormProps> = () => {
     const [description, setDescription] = useState("");
     const stopwatchFormType = useTypeSelector((state) => state.stopwatchFormState.type);
     const item = useTypeSelector((state) => state.stopwatchFormState.stopwatch);
-    const { addStopwatch, closeStopwatchForm, editStopwatch } = useActions();
+    const { addStopwatch, closeStopwatchForm, editStopwatch, resetStopwatch } = useActions();
 
     useEffect(() => {
         if (item?.title) {
@@ -54,10 +57,23 @@ export const StopwatchForm: React.FC<StopwatchFormProps> = () => {
         closeStopwatchForm();
     };
 
+    const onReset = () => {
+        item?._id && resetStopwatch(item._id);
+        closeStopwatchForm();
+    };
+
     return (
         <Form onSave={onSave} onCancel={onCancel}>
             <Input title="Название" setValue={setTitle} value={title} />
             <Textarea title="Описание" setValue={setDescription} value={description} />
+            {stopwatchFormType !== "create" && (
+                <Button
+                    className="button_stopwatch-from"
+                    onClick={onReset}
+                >
+                    Обнулить таймер
+                </Button>
+            )}
         </Form>
     );
 };
