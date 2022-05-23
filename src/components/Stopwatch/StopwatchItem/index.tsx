@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { EditOutlined, DeleteOutlined, PlayCircleOutlined, PauseCircleOutlined } from "@ant-design/icons";
+import cn from 'classnames'
 
-import * as workerTimers from "worker-timers";
 import { setWorkerInterval, clearWorkerTimer } from "set-worker-timer";
 
 import { getStopwatchTime, isStopwatchTicking, getTimeFromMilliseconds, getStopwatchLastIntervalStartTime } from "../../../helper/stopwatch";
@@ -46,8 +46,8 @@ export const StopwatchItem: React.FC<StopwatchItemProps> = ({ item, onEditButton
     };
 
     return (
-        <tr key={item._id}>
-            <td className="table__action action">
+        <tr key={item._id} className={cn({table__line_ticked: isTicking})}>
+            <td className={`table__action action`} >
                 <div className="action__item" onClick={onToggleTicking}>
                     {isTicking ? <PauseCircleOutlined /> : <PlayCircleOutlined />}
                 </div>
