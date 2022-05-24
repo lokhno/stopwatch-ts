@@ -11,7 +11,7 @@ export const Stopwatches: React.FC<StopwatchesProps> = () => {
     const { projectId } = useParams();
     return (
         <div className="content">
-            <StopwatchList projectId={projectId !== undefined ? +projectId : 0} />
+            <StopwatchList projectId={projectId !== undefined ? +projectId : 0} type="single" />
         </div>
     );
 };

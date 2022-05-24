@@ -10,7 +10,7 @@ export const AllStopwatches: React.FC<AllStopwatchesProps> = () => {
     return (
         <div className="content">
             {projects.map((project) => (
-                <StopwatchList key={project._id} projectId={project._id} />
+                <StopwatchList key={project._id} projectId={project._id} type="fulllist" />
             ))}
         </div>
     );

@@ -11,9 +11,10 @@ import "./StopwatchList.scss";
 
 interface StopwatchListProps {
     projectId?: number;
+    type: "single" | "fulllist";
 }
 
-export const StopwatchList: React.FC<StopwatchListProps> = ({ projectId }) => {
+export const StopwatchList: React.FC<StopwatchListProps> = ({ projectId, type }) => {
     const stopwatches = useTypeSelector((state) =>
         state.stopwatchState.stopwatches.filter((item) => {
             if (projectId) {
@@ -38,7 +39,7 @@ export const StopwatchList: React.FC<StopwatchListProps> = ({ projectId }) => {
     const onDeleteButtonClick = (item: IStopwatch) => {
         deleteStopwatch(item._id);
     };
-    return (
+    return type === "single" || (type === "fulllist" && stopwatches.length !== 0) ? (
         <div className="stopwatch">
             <div className="stopwatch__title">
                 <Link to={`/stopwatch/${projectId}`}>{project?.title}</Link>
@@ -66,5 +67,7 @@ export const StopwatchList: React.FC<StopwatchListProps> = ({ projectId }) => {
                 </tbody>
             </table>
         </div>
+    ) : (
+        <></>
     );
 };
